@@ -1,0 +1,160 @@
+import { Appear, Embed, Notes } from 'mdx-deck'
+import { CodeSurferLayout } from 'code-surfer'
+
+## Benefits of Clean Code 🙉
+
+<ul>
+  <Appear>
+    <li>Easier to understand going forward</li>
+    <li>
+      Essential for creating a successful <br /> maintainable product
+    </li>
+    <li>Clean code keeps you sane 🤪</li>
+  </Appear>
+</ul>
+
+---
+
+###### Speaking of sane...
+
+---
+
+![gswjs](/images/gswjs.png)
+
+---
+
+![rb](/images/rb.png)
+
+---
+
+## ⚡ List of weird APIs
+
+<ul>
+  <Appear>
+    <li>URL</li>
+    <li>History</li>
+    <li>Canvas rendering</li>
+    <li>Keyboard event</li>
+    <li>...and many many others</li>
+  </Appear>
+</ul>
+
+---
+
+<CodeSurferLayout>
+
+```js
+URL(url, [base])
+```
+
+```js
+URL(url, [base])
+
+new URL('example.com') // ❌
+```
+
+```js
+URL(url, [base])
+
+new URL('example.com') // ❌
+new URL('www.example.com') // ❌
+```
+
+```js
+URL(url, [base])
+
+new URL('example.com') // ❌
+new URL('www.example.com') // ❌
+new URL('http://www.example.com') // ✅
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```js
+history.pushState(data, title, [url])
+```
+
+```js
+history.pushState(data, title, [url])
+
+history.pushState(null, '', 'http://www.example.com') // ✅
+```
+
+```js
+history.pushState(data, title, [url])
+
+history.pushState(null, '', 'http://www.example.com') // ✅
+
+history.pushState('http://www.example.com') // ❌
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<!-- prettier-ignore-start -->
+
+```js
+ctx.arc(x, y, radius, startAngle, endAngle [, anticlockwise])
+```
+
+```js
+ctx.arc(x, y, radius, startAngle, endAngle [, anticlockwise])
+
+ctx.ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle [, anticlockwise])
+```
+
+```js
+ctx.arc(x, y, radius, startAngle, endAngle [, anticlockwise])
+
+ctx.ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle [, anticlockwise])
+
+kbdEvent.initKeyboardEvent(typeArg, canBubbleArg, cancelableArg,
+                           viewArg, charArg, keyArg,
+                           locationArg, modifiersListArg, repeat)
+```
+
+```js
+ctx.arc(x, y, radius, startAngle, endAngle [, anticlockwise])
+
+ctx.ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle [, anticlockwise])
+
+kbdEvent.initKeyboardEvent(typeArg, canBubbleArg, cancelableArg,
+                           viewArg, charArg, keyArg,
+                           locationArg, modifiersListArg, repeat)
+
+event.initKeyEvent (type, bubbles, cancelable, viewArg,
+                    ctrlKeyArg, altKeyArg, shiftKeyArg, metaKeyArg,
+                    keyCodeArg, charCodeArg)
+```
+
+<!-- prettier-ignore-end -->
+
+</CodeSurferLayout>
+
+---
+
+![what](https://media.giphy.com/media/g1a84q6RBSMrS/giphy.gif)
+
+---
+
+# Things to remember 👨‍🔬
+
+- Use sensible defaults
+- Organize parameter orders (2 or 3 params max)
+- Don't trap parameters
+
+---
+
+# Prettify your code 👩‍🎤
+
+- Consistent formatting using code formatters <br />
+  such as [prettier](https://prettier.io)
+- Add git hooks to format codes before commits <br />
+  or pushing using [husky](https://github.com/typicode/husky)

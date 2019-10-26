@@ -1,0 +1,22 @@
+{
+  "name": "slick-and-clean-javascript",
+  "description": "Clean code concepts, tips and tricks on writing JavaScript - Sunday, 27 October 2019",
+  "version": "1.0.0",
+  "repository": "git@github.com:grikomsn/slick-and-clean-javascript.git",
+  "author": "Griko Nibras <hello@griko.id>",
+  "scripts": {
+    "start": "mdx-deck deck.js",
+    "build": "mdx-deck build deck.js",
+    "now-build": "yarn build"
+  },
+  "devDependencies": {
+    "code-surfer": "^2.0.0-alpha.10",
+    "mdx-deck": "^2.5.1",
+    "mdx-deck-code-surfer": "^0.5.5"
+  },
+  "peerDependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "license": "MIT"
+}

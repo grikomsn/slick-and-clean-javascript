@@ -1,0 +1,999 @@
+import { Appear, Embed, Notes } from 'mdx-deck'
+import { CodeSurferLayout } from 'code-surfer'
+
+Any fool can write code that a <br /> computer can understand. <br />
+Good programmers write code that <br /> <u>humans can understand</u>.
+
+###### Martin Fowler
+
+---
+
+![wtf](https://www.butterfly.com.au/sites/default/files/images/blog/cleancode/codequality.JPG)
+
+---
+
+# Bad Code Disaster 😱
+
+<ul>
+  <Appear>
+    <li>
+      Space rockets being mislaunched due to a badly <br /> transcribed formula
+    </li>
+    <li>A single line was missing</li>
+    <li>
+      Rocket had to be terminated 293 seconds <br /> after launch
+    </li>
+    <li>Ultimately costing around 20 million dollars 😱😱😱😱</li>
+  </Appear>
+</ul>
+
+---
+
+![slope](https://www.butterfly.com.au/sites/default/files/images/blog/cleancode/time-spent-by-programmers.JPG)
+
+###### The ratio of time spent by a programmer reading code <br /> to writing code is normally 10:1.
+
+---
+
+## 👨‍💻 Programmer = Author 👨‍🏫
+
+<ul>
+  <Appear>
+    <li>Your target audience is not the computer</li>
+    <li>Your target audience is other programmers...</li>
+    <li>...and yourself</li>
+  </Appear>
+</ul>
+
+---
+
+Always code as if the guy who <br /> ends up maintaining your code <br />
+will be <u>a violent psychopath</u> <br /> who knows where you live.
+
+###### Martin Golding
+
+---
+
+![hard af](https://media.giphy.com/media/kHJXB5lSGCXf2/giphy.gif)
+
+###### It is hard to write clean code?
+
+---
+
+## Writing clean code needs... 🤔
+
+- A lot of practice and focus during execution
+- Train your mind over a period of time
+- Time goes by and your skillset improves
+
+---
+
+![le cat](https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif)
+
+###### Writing clean code is all about readability.
+
+---
+
+The boy scouts of America have a simple rule:
+
+## Leave the campground cleaner <br /> than you found it.
+
+🌳🌴🌱🌿
+
+---
+
+###### Here are several rules on writing clean code...
+
+---
+
+## Use meaningful and <br /> pronounceable <br /> variable names
+
+# 🐶
+
+---
+
+<CodeSurferLayout>
+
+```js
+const yyyymmdstr = moment().format('YYYY/MM/DD')
+```
+
+```js
+const yyyymmdstr = moment().format('YYYY/MM/DD')
+const currentDate = moment().format('YYYY/MM/DD')
+```
+
+```js
+const yyyymmdstr = moment().format('YYYY/MM/DD')
+const currentDate = moment().format('YYYY/MM/DD')
+const date = moment().format('YYYY/MM/DD')
+```
+
+```js 1:3
+const yyyymmdstr = moment().format('YYYY/MM/DD')
+const currentDate = moment().format('YYYY/MM/DD')
+const date = moment().format('YYYY/MM/DD')
+```
+
+</CodeSurferLayout>
+
+---
+
+## Use the same vocabulary <br /> for the same type of variable
+
+# 🐱
+
+---
+
+<CodeSurferLayout>
+
+```js
+getUserInfo()
+```
+
+```js 1 subtitle='is it the user or only the info?'
+getUserInfo()
+```
+
+```js subtitle='client object? metadata? anything?'
+getUserInfo()
+getClientData()
+```
+
+```js subtitle='entries? transactions?'
+getUserInfo()
+getClientData()
+getCustomerRecord()
+```
+
+```js subtitle='returns the user object and nothing else'
+getUserInfo()
+getClientData()
+getCustomerRecord()
+getUser()
+```
+
+```js 1:4
+getUserInfo()
+getClientData()
+getCustomerRecord()
+getUser()
+```
+
+</CodeSurferLayout>
+
+---
+
+## Use searchable names
+
+# 🐭
+
+---
+
+<CodeSurferLayout>
+
+```js
+setTimeout(blastOff, 86400000)
+```
+
+```js 1[22:29] subtitle='what is 86400000?'
+setTimeout(blastOff, 86400000)
+```
+
+```js subtitle='use capitalized named constants'
+const MILLISECONDS_IN_A_DAY = 86400000
+setTimeout(blastOff, 86400000)
+```
+
+```js
+const MILLISECONDS_IN_A_DAY = 86400000
+setTimeout(blastOff, MILLISECONDS_IN_A_DAY)
+```
+
+</CodeSurferLayout>
+
+---
+
+## Avoid Mental Mapping
+
+Explicit is better than implicit
+
+# 🐹
+
+---
+
+<CodeSurferLayout>
+
+```js
+const locations = ['Austin', 'New York', 'San Francisco']
+
+locations.forEach(l => {
+  doStuff()
+  doSomeOtherStuff()
+  dispatch(l)
+})
+```
+
+```js 1:8
+const locations = ['Austin', 'New York', 'San Francisco']
+
+locations.forEach(l => {
+  doStuff()
+  doSomeOtherStuff()
+  ...
+  dispatch(l)
+})
+```
+
+```js 1:9
+const locations = ['Austin', 'New York', 'San Francisco']
+
+locations.forEach(l => {
+  doStuff()
+  doSomeOtherStuff()
+  ...
+  ...
+  dispatch(l)
+})
+```
+
+```js 1:10
+const locations = ['Austin', 'New York', 'San Francisco']
+
+locations.forEach(l => {
+  doStuff()
+  doSomeOtherStuff()
+  ...
+  ...
+  ...
+  dispatch(l)
+})
+```
+
+```js 1:20
+const locations = ['Austin', 'New York', 'San Francisco']
+
+locations.forEach(l => {
+  doStuff()
+  doSomeOtherStuff()
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  dispatch(l)
+})
+```
+
+```js 19 subtitle='Wait, what is {l} for again?'
+const locations = ['Austin', 'New York', 'San Francisco']
+
+locations.forEach(l => {
+  doStuff()
+  doSomeOtherStuff()
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+  dispatch(l)
+})
+```
+
+```js 1:7
+const locations = ['Austin', 'New York', 'San Francisco']
+
+locations.forEach(l => {
+  doStuff()
+  doSomeOtherStuff()
+  dispatch(l)
+})
+```
+
+```js 1:7
+const locations = ['Austin', 'New York', 'San Francisco']
+
+locations.forEach(location => {
+  doStuff()
+  doSomeOtherStuff()
+  dispatch(location)
+})
+```
+
+</CodeSurferLayout>
+
+---
+
+## Don't add unneeded context
+
+If your class/object name tells you something, <br />
+don't repeat that in your variable name
+
+# 🐰
+
+---
+
+<CodeSurferLayout>
+
+```js
+const Car = {
+  carMake: 'Honda',
+  carModel: 'Accord',
+  carColor: 'Blue',
+}
+
+function paintCar(car) {
+  car.carColor = 'Red'
+}
+```
+
+```js 1:9
+const Car = {
+  make: 'Honda',
+  model: 'Accord',
+  color: 'Blue',
+}
+
+function paintCar(car) {
+  car.color = 'Red'
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+## Use default arguments instead of <br /> short circuiting or conditionals
+
+Default arguments are often cleaner than short circuiting
+
+# 🦊
+
+---
+
+<CodeSurferLayout>
+
+```js
+function createMicrobrewery(name) {
+  // ...
+}
+```
+
+```js 1:4
+function createMicrobrewery(name) {
+  const breweryName = name || 'Hipster Brew Co.'
+  // ...
+}
+```
+
+```js 1:4
+function createMicrobrewery(name = 'Hipster Brew Co.') {
+  const breweryName = name || 'Hipster Brew Co.'
+  // ...
+}
+```
+
+```js 1:3
+function createMicrobrewery(name = 'Hipster Brew Co.') {
+  // ...
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+## Function arguments
+
+<ul>
+  <Appear>
+    <li>Makes testing your function easier</li>
+    <li>Two arguments is the ideal case</li>
+    <li>Three should be avoided if possible</li>
+    <li>More than that should be consolidated</li>
+  </Appear>
+</ul>
+
+# 🐻
+
+---
+
+<CodeSurferLayout>
+
+```js
+function createMenu(title, body, buttonText, cancellable) {
+  // ...
+}
+```
+
+```js
+function createMenu(title, body, buttonText, cancellable) {
+  // ...
+}
+
+createMenu('Foo', 'Bar', 'Baz', true)
+```
+
+```js
+function createMenu(title, body, buttonText, cancellable) {
+  // ...
+}
+
+createMenu('Foo', 'Bar', 'Baz', true)
+
+function createMenu({ title, body, buttonText, cancellable }) {
+  // ...
+}
+```
+
+```js
+function createMenu(title, body, buttonText, cancellable) {
+  // ...
+}
+
+createMenu('Foo', 'Bar', 'Baz', true)
+
+function createMenu({ title, body, buttonText, cancellable }) {
+  // ...
+}
+
+createMenu({
+  title: 'Foo',
+  body: 'Bar',
+  buttonText: 'Baz',
+  cancellable: true,
+})
+```
+
+```js 11:16
+function createMenu(title, body, buttonText, cancellable) {
+  // ...
+}
+
+createMenu('Foo', 'Bar', 'Baz', true)
+
+function createMenu({ title, body, buttonText, cancellable }) {
+  // ...
+}
+
+createMenu({
+  body: 'Bar',
+  cancellable: true,
+  buttonText: 'Baz',
+  title: 'Foo',
+})
+```
+
+```js 1:7
+function createMenu(title, body, buttonText, cancellable) {
+  // ...
+}
+
+function createMenu({ title, body, buttonText, cancellable }) {
+  // ...
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+## Functions should do one thing
+
+# 🐼
+
+---
+
+<CodeSurferLayout>
+
+```js
+function emailClients(clients) {
+  clients.forEach(client => {
+    const clientRecord = database.lookup(client)
+    if (clientRecord.isActive()) {
+      email(client)
+    }
+  })
+}
+```
+
+<!-- prettier-ignore-start -->
+```js 1:8
+  function emailActiveClients(clients) {
+    clients.filter(isActiveClient).forEach(email)
+  }
+
+  function isActiveClient(client) {
+    const clientRecord = database.lookup(client)
+    return clientRecord.isActive()
+  }
+```
+<!-- prettier-ignore-end -->
+
+</CodeSurferLayout>
+
+---
+
+## Function names should <br /> say what they do
+
+# 🐨
+
+---
+
+<CodeSurferLayout>
+
+```js
+function addToDate(date, month) {
+  // ...
+}
+```
+
+```js subtitle='what is added to date?'
+function addToDate(date, month) {
+  // ...
+}
+
+const date = new Date()
+addToDate(date, 1)
+```
+
+```js
+function addToDate(date, month) {
+  // ...
+}
+
+function addMonthToDate(month, date) {
+  // ...
+}
+
+const date = new Date()
+addToDate(date, 1)
+```
+
+```js 1:6
+function addMonthToDate(month, date) {
+  // ...
+}
+
+const date = new Date()
+addMonthToDate(1, date)
+```
+
+</CodeSurferLayout>
+
+---
+
+## Remove duplicate code
+
+# 🐯
+
+---
+
+<CodeSurferLayout>
+
+```js
+function showDeveloperList(developers) {
+  developers.forEach(developer => {
+    ...
+  })
+}
+```
+
+```js
+function showDeveloperList(developers) {
+  developers.forEach(developer => {
+    const expectedSalary = developer.calculateExpectedSalary()
+    const experience = developer.getExperience()
+    const githubLink = developer.getGithubLink()
+    const data = {
+      expectedSalary,
+      experience,
+      githubLink,
+    }
+
+    render(data)
+  })
+}
+```
+
+```js
+function showDeveloperList(developers) {
+  developers.forEach(developer => {
+    const expectedSalary = developer.calculateExpectedSalary()
+    const experience = developer.getExperience()
+    const githubLink = developer.getGithubLink()
+    const data = {
+      expectedSalary,
+      experience,
+      githubLink,
+    }
+
+    render(data)
+  })
+}
+
+function showManagerList(managers) {
+  managers.forEach(manager => {
+    const expectedSalary = manager.calculateExpectedSalary()
+    const experience = manager.getExperience()
+    const portfolio = manager.getMBAProjects()
+    const data = {
+      expectedSalary,
+      experience,
+      portfolio,
+    }
+
+    render(data)
+  })
+}
+```
+
+```js 1:29
+function showDeveloperList(developers) {
+  developers.forEach(developer => {
+    const expectedSalary = developer.calculateExpectedSalary()
+    const experience = developer.getExperience()
+    const githubLink = developer.getGithubLink()
+    const data = {
+      expectedSalary,
+      experience,
+      githubLink,
+    }
+
+    render(data)
+  })
+}
+
+function showManagerList(managers) {
+  managers.forEach(manager => {
+    const expectedSalary = manager.calculateExpectedSalary()
+    const experience = manager.getExperience()
+    const portfolio = manager.getMBAProjects()
+    const data = {
+      expectedSalary,
+      experience,
+      portfolio,
+    }
+
+    render(data)
+  })
+}
+```
+
+```js 3:12,18:27
+function showDeveloperList(developers) {
+  developers.forEach(developer => {
+    const expectedSalary = developer.calculateExpectedSalary()
+    const experience = developer.getExperience()
+    const githubLink = developer.getGithubLink()
+    const data = {
+      expectedSalary,
+      experience,
+      githubLink,
+    }
+
+    render(data)
+  })
+}
+
+function showManagerList(managers) {
+  managers.forEach(manager => {
+    const expectedSalary = manager.calculateExpectedSalary()
+    const experience = manager.getExperience()
+    const portfolio = manager.getMBAProjects()
+    const data = {
+      expectedSalary,
+      experience,
+      portfolio,
+    }
+
+    render(data)
+  })
+}
+```
+
+```js 1:22
+function showEmployeeList(employees) {
+  employees.forEach(employee => {
+    const expectedSalary = employee.calculateExpectedSalary()
+    const experience = employee.getExperience()
+
+    const data = { expectedSalary, experience }
+
+    switch (employee.type) {
+      case 'manager':
+        data.portfolio = employee.getMBAProjects()
+        break
+      case 'developer':
+        data.githubLink = employee.getGithubLink()
+        break
+    }
+
+    render(data)
+  })
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+## Don't use flags as <br /> function parameters
+
+<ul>
+  <Appear>
+    <li>
+      Flags tell your user that this function <br /> does more than one thing
+    </li>
+    <li>Functions should do one thing</li>
+  </Appear>
+</ul>
+
+# 🦁
+
+---
+
+<CodeSurferLayout>
+
+```js
+function createFile(name, temp) ${'{'}
+  if (temp) {
+    fs.create('./temp/' + name)
+  } else {
+    fs.create(name)
+  }
+}
+```
+
+```js 1:3
+function createFile(name, temp) {
+  fs.create(name)
+}
+```
+
+```js
+function createFile(name, temp) {
+  fs.create(name)
+}
+
+function createTempFile(name) {
+  createFile('./temp/' + name)
+}
+```
+
+```js 1:7
+function createFile(name, temp) {
+  fs.create(name)
+}
+
+function createTempFile(name) {
+  createFile('./temp/' + name)
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+## Avoid negative conditionals
+
+# 🐮
+
+---
+
+<CodeSurferLayout>
+
+```js
+function isDOMNodeNotPresent(node) {
+  // ...
+}
+```
+
+```js
+function isDOMNodeNotPresent(node) {
+  // ...
+}
+
+if (!isDOMNodeNotPresent(node)) {
+  // ...
+}
+```
+
+```js 1:7
+function isDOMNodePresent(node) {
+  // ...
+}
+
+if (isDOMNodePresent(node)) {
+  // ...
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+## Use Promises, not callbacks
+
+# 🐷
+
+---
+
+<CodeSurferLayout>
+
+```js
+import { get } from 'request'
+import { writeFile } from 'fs'
+
+get(
+  'https://en.wikipedia.org/wiki/Robert_Cecil_Martin',
+  (requestErr, response) => ${'{'}
+    if (requestErr) {
+      console.error(requestErr)
+    } else {
+      writeFile('article.html', response.body, writeErr => {
+        if (writeErr) {
+          console.error(writeErr)
+        } else {
+          console.log('File written')
+        }
+      })
+    }
+  }
+)
+```
+
+```js
+import { get } from 'request'
+import { writeFile } from 'fs'
+
+get(
+  'https://en.wikipedia.org/wiki/Robert_Cecil_Martin',
+  (requestErr, response) => ${'{'}
+    if (requestErr) {
+      console.error(requestErr)
+    } else {
+      writeFile('article.html', response.body, writeErr => {
+        if (writeErr) {
+          console.error(writeErr)
+        } else {
+          console.log('File written')
+        }
+      })
+    }
+  }
+)
+
+get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
+  .then(response => {
+    return writeFile('article.html', response)
+  })
+  .then(() => {
+    console.log('File written')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+```
+
+</CodeSurferLayout>
+
+---
+
+## Async/Await are even cleaner <br /> than Promises
+
+# 🐸
+
+---
+
+<CodeSurferLayout>
+
+```js
+get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
+  .then(response => {
+    return writeFile('article.html', response)
+  })
+  .then(() => {
+    console.log('File written')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+```
+
+```js
+get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
+  .then(response => {
+    return writeFile('article.html', response)
+  })
+  .then(() => {
+    console.log('File written')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+
+async function getCleanCodeArticle() ${'{'}
+  try {
+    const response = await get(
+      'https://en.wikipedia.org/wiki/Robert_Cecil_Martin'
+    )
+    await writeFile('article.html', response)
+    console.log('File written')
+  } catch (err) {
+    console.error(err)
+  }
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+## Use consistent capitalization
+
+# 🐵
+
+---
+
+<CodeSurferLayout>
+
+```js
+const DAYS_IN_WEEK = 7
+const daysInMonth = 30
+
+const songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude']
+const Artists = ['ACDC', 'Led Zeppelin', 'The Beatles']
+
+function eraseDatabase() {}
+function restore_database() {}
+
+class animal {}
+class Alpaca {}
+```
+
+```js
+const DAYS_IN_WEEK = 7
+const DAYS_IN_MONTH = 30
+
+const SONGS = ['Back In Black', 'Stairway to Heaven', 'Hey Jude']
+const ARTISTS = ['ACDC', 'Led Zeppelin', 'The Beatles']
+
+function eraseDatabase() {}
+function restoreDatabase() {}
+
+class Animal {}
+class Alpaca {}
+```
+
+</CodeSurferLayout>
+
+---
+
+![still more](https://media.giphy.com/media/2siakshqsfOPnSXJNC/giphy.gif)
+
+###### ...and many many more
+
+---
+
+Read more at
+
+#### [ryanmcdermott/clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript)
+
+# 🙈

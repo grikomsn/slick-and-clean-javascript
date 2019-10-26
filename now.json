@@ -1,0 +1,24 @@
+{
+  "name": "slick-and-clean-javascript",
+  "version": 2,
+  "alias": ["slick-and-clean-javascript"],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/[0-9]+$",
+      "dest": "/"
+    }
+  ],
+  "github": {
+    "autoAlias": true,
+    "enabled": true
+  },
+  "public": true,
+  "regions": ["all"]
+}
