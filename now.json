@@ -1,6 +1,4 @@
 {
-  "name": "slick-and-clean-javascript",
-  "version": 2,
   "alias": ["slick-and-clean-javascript"],
   "builds": [
     {
@@ -19,6 +17,5 @@
     "autoAlias": true,
     "enabled": true
   },
-  "public": true,
-  "regions": ["all"]
+  "public": true
 }
